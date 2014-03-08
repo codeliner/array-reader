@@ -1,0 +1,4 @@
+array-reader
+============
+
+PHP ArrayReader
