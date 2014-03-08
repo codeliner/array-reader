@@ -42,10 +42,10 @@ class ArrayReader
         $value = $this->getValueFromPath($aPath);
 
         if (is_null($value)) {
-            return intval($default);
+            return \intval($default);
         }
 
-        return intval($value);
+        return \intval($value);
     }
 
     /**
@@ -58,10 +58,10 @@ class ArrayReader
         $value = $this->getValueFromPath($aPath);
 
         if (is_null($value)) {
-            return floatval($default);
+            return \floatval($default);
         }
 
-        return floatval($value);
+        return \floatval($value);
     }
 
     /**
@@ -74,10 +74,10 @@ class ArrayReader
         $value = $this->getValueFromPath($aPath);
 
         if (is_null($value)) {
-            return boolval($default);
+            return \boolval($default);
         }
 
-        return boolval($value);
+        return \boolval($value);
     }
 
     /**
@@ -90,10 +90,10 @@ class ArrayReader
         $value = $this->getValueFromPath($aPath);
 
         if (is_null($value)) {
-            return strval($default);
+            return \strval($default);
         }
 
-        return strval($value);
+        return \strval($value);
     }
 
     /**
