@@ -74,10 +74,10 @@ class ArrayReader
         $value = $this->getValueFromPath($aPath);
 
         if (is_null($value)) {
-            return \boolval($default);
+            return (bool)$default;
         }
 
-        return \boolval($value);
+        return (bool)$value;
     }
 
     /**
