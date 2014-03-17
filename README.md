@@ -8,7 +8,7 @@ PHP ArrayReader
 
 ## Installation
 
-Installation of malocher\event-store uses composer. For composer documentation, please refer to
+Installation of codeliner\array-reader uses composer. For composer documentation, please refer to
 [getcomposer.org](http://getcomposer.org/).
 Add following requirement to your composer.json
 
