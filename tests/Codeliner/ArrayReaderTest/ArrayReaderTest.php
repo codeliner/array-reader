@@ -341,6 +341,24 @@ class ArrayReaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($check, $arrayReader->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function is_escaped_dot_ignored_in_path_detection()
+    {
+        $arrayReader = new ArrayReader(
+            array(
+                'hash' => array(
+                    'with.dot.key' => array(
+                        'nested' => 'value'
+                    )
+                )
+            )
+        );
+
+        $this->assertSame('value', $arrayReader->stringValue('hash.with\.dot\.key.nested', 'default'));
+    }
 }
 
  

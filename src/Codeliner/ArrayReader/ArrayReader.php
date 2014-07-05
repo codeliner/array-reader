@@ -134,7 +134,10 @@ class ArrayReader
      */
     protected function toPathKeys($aPath)
     {
-        return explode('.', $aPath);
+        $aPath = str_replace('\.', '___IamADot___', $aPath);
+        $parts = explode('.', $aPath);
+
+        return array_map(function ($part) { return str_replace('___IamADot___', '.', $part); }, $parts);
     }
 
     /**
