@@ -13,7 +13,7 @@ Installation of codeliner\array-reader uses composer. For composer documentation
 Add following requirement to your composer.json
 
 ```sh
-"codeliner/array-reader" : "1.0.*"
+"codeliner/array-reader" : "~1.0"
 ```
 
 ## Usage
@@ -52,6 +52,23 @@ $arrayReader = new ArrayReader(
 echo $arrayReader->stringValue('hash.not.existing.path', 'defaultString'));
 
 //Output: defaultString
+
+
+//If a key in your array contains a dot you escape it in the path with a backslash
+
+$arrayReader = new ArrayReader(
+    array(
+        'hash' => array(
+            'with.dot.key' => array(
+                'nested' => 'value'
+            )
+        )
+    )
+);
+
+echo $arrayReader->stringValue('hash.with\.dot\.key.nested'));
+
+//Output: value
 ```
 
 
