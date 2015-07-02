@@ -5,7 +5,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
+ *
  * Date: 08.03.14 - 21:28
  */
 
@@ -115,6 +115,22 @@ class ArrayReader
 
         if (is_object($value)) {
             $value = json_decode(json_encode($value), true);
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param string $aPath
+     * @param null $default
+     * @return mixed
+     */
+    public function mixedValue($aPath, $default = null)
+    {
+        $value = $this->getValueFromPath($aPath);
+
+        if (is_null($value)) {
+            return $default;
         }
 
         return $value;

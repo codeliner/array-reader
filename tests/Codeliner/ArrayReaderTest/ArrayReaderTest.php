@@ -5,7 +5,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
+ *
  * Date: 08.03.14 - 21:30
  */
 namespace Codeliner\ArrayReaderTest;
@@ -359,6 +359,54 @@ class ArrayReaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('value', $arrayReader->stringValue('hash.with\.dot\.key.nested', 'default'));
     }
+
+    /**
+     * @test
+     * @dataProvider provideForMixedTest
+     */
+    public function is_mixed_value($value)
+    {
+        $arrayReader = new ArrayReader(
+            array(
+                'hash' => array(
+                    'with' => array(
+                        'nested' => $value
+                    )
+                )
+            )
+        );
+
+        $this->assertSame($value, $arrayReader->mixedValue('hash.with.nested'));
+    }
+
+    /**
+     * @test
+     * @dataProvider provideForMixedTest
+     */
+    public function is_default_mixed_returned_when_path_not_exists($value)
+    {
+        $arrayReader = new ArrayReader(
+            array(
+                'hash' => array(
+                    'with' => array(
+                        'nested' => $value
+                    )
+                )
+            )
+        );
+
+        $this->assertSame(null, $arrayReader->mixedValue('hash.with.unknown', null));
+    }
+
+    public function provideForMixedTest()
+    {
+        return [
+            [null],
+            [[1,2,3]],
+            [new \stdClass()],
+            [1],
+            ['string']
+        ];
+    }
 }
 
- 
