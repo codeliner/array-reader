@@ -409,5 +409,26 @@ class ArrayReaderTest extends TestCase
             ['string']
         ];
     }
+
+    /**
+     * @test
+     * @dataProvider provideForPathExistsTest
+     */
+    public function it_checks_if_path_exists(string $path, array $arrayToCheck, bool $expected)
+    {
+        $reader = new ArrayReader($arrayToCheck);
+
+        $this->assertSame($expected, $reader->pathExists($path));
+    }
+
+    public function provideForPathExistsTest(): array
+    {
+        return [
+            ['test.path', ['test' => ['path' => 'value']], true],
+            ['test.path', ['test' => ['path' => null]], true],
+            ['test.path', ['test' => ['other' => null]], false],
+            ['test', ['test' => ['other' => null]], true],
+        ];
+    }
 }
 
