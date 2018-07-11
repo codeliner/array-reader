@@ -111,6 +111,24 @@ class ArrayReader
         return $value;
     }
 
+    public function pathExists(string $aPath): bool
+    {
+        $pathKeys = $this->toPathKeys($aPath);
+
+        $arrayCopyOrValue = $this->originalArray;
+
+        foreach($pathKeys as $pathKey) {
+
+            if (!array_key_exists($pathKey, $arrayCopyOrValue)) {
+                return false;
+            }
+
+            $arrayCopyOrValue = $arrayCopyOrValue[$pathKey];
+        }
+
+        return true;
+    }
+
     public function toArray(): array
     {
         return $this->originalArray;
