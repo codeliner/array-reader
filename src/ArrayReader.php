@@ -22,7 +22,7 @@ class ArrayReader
     /**
      * @var array
      */
-    private $originalArray = array();
+    private $originalArray = [];
 
     /**
      * @param array $anArray
@@ -32,12 +32,7 @@ class ArrayReader
         $this->originalArray = $anArray;
     }
 
-    /**
-     * @param string $aPath
-     * @param int    $default
-     * @return int
-     */
-    public function integerValue($aPath, $default = 0)
+    public function integerValue(string $aPath, int $default = 0): int
     {
         $value = $this->getValueFromPath($aPath);
 
@@ -48,12 +43,7 @@ class ArrayReader
         return \intval($value);
     }
 
-    /**
-     * @param string $aPath
-     * @param float  $default
-     * @return float
-     */
-    public function floatValue($aPath, $default = 0.0)
+    public function floatValue(string $aPath, float $default = 0.0): float
     {
         $value = $this->getValueFromPath($aPath);
 
@@ -64,12 +54,7 @@ class ArrayReader
         return \floatval($value);
     }
 
-    /**
-     * @param string $aPath
-     * @param bool   $default
-     * @return bool
-     */
-    public function booleanValue($aPath, $default = false)
+    public function booleanValue(string $aPath, bool $default = false): bool
     {
         $value = $this->getValueFromPath($aPath);
 
@@ -80,12 +65,7 @@ class ArrayReader
         return (bool)$value;
     }
 
-    /**
-     * @param string $aPath
-     * @param string $default
-     * @return string
-     */
-    public function stringValue($aPath, $default = '')
+    public function stringValue(string $aPath, string $default = ''): string
     {
         $value = $this->getValueFromPath($aPath);
 
@@ -96,12 +76,7 @@ class ArrayReader
         return \strval($value);
     }
 
-    /**
-     * @param string $aPath
-     * @param array  $default
-     * @return array
-     */
-    public function arrayValue($aPath, array $default = array())
+    public function arrayValue(string $aPath, array $default = []): array
     {
         $value = $this->getValueFromPath($aPath);
 
@@ -122,10 +97,10 @@ class ArrayReader
 
     /**
      * @param string $aPath
-     * @param null $default
+     * @param mixed $default
      * @return mixed
      */
-    public function mixedValue($aPath, $default = null)
+    public function mixedValue(string $aPath, $default = null)
     {
         $value = $this->getValueFromPath($aPath);
 
@@ -136,19 +111,12 @@ class ArrayReader
         return $value;
     }
 
-    /**
-     * @return array
-     */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->originalArray;
     }
 
-    /**
-     * @param string $aPath
-     * @return array
-     */
-    protected function toPathKeys($aPath)
+    protected function toPathKeys(string $aPath): array
     {
         $aPath = str_replace('\.', '___IamADot___', $aPath);
         $parts = explode('.', $aPath);
@@ -160,7 +128,7 @@ class ArrayReader
      * @param string $aPath
      * @return mixed
      */
-    protected function getValueFromPath($aPath)
+    protected function getValueFromPath(string $aPath)
     {
         $pathKeys = $this->toPathKeys($aPath);
 

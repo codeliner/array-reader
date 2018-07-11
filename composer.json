@@ -16,15 +16,22 @@
         "util"
     ],
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=7.1"
     },
     "require-dev" : {
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": ">=7.0"
     },
     "autoload": {
-        "psr-0": {
-            "Codeliner\\ArrayReader\\": "src",
+        "psr-4": {
+            "Codeliner\\ArrayReader\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Codeliner\\ArrayReaderTest\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit -vvv"
     }
 }

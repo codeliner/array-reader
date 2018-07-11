@@ -11,6 +11,7 @@
 namespace Codeliner\ArrayReaderTest;
 
 use Codeliner\ArrayReader\ArrayReader;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ArrayReaderTest
@@ -18,7 +19,7 @@ use Codeliner\ArrayReader\ArrayReader;
  * @package Codeliner\ArrayReaderTest
  * @author Alexander Miertsch <kontakt@codeliner.ws>
  */
-class ArrayReaderTest extends \PHPUnit_Framework_TestCase
+class ArrayReaderTest extends TestCase
 {
     /**
      * @test
