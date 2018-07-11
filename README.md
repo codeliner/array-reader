@@ -13,7 +13,7 @@ Installation of codeliner\array-reader uses composer. For composer documentation
 Add following requirement to your composer.json
 
 ```sh
-"codeliner/array-reader" : "~1.0"
+"codeliner/array-reader" : "~2.0"
 ```
 
 ## Usage
@@ -69,6 +69,24 @@ $arrayReader = new ArrayReader(
 echo $arrayReader->stringValue('hash.with\.dot\.key.nested'));
 
 //Output: value
+
+//If you need to differentiate between a NULL value and a not existing path, you can explicity check if the path exists:
+
+$arrayReader = new ArrayReader(
+    array(
+        'hash' => array(
+            'with' => array(
+                'nested' => null
+            )
+        )
+    )
+);
+
+if($arrayReader->pathExists('hash.with.nested')) {
+    echo "path exists";
+}
+
+//Output: path exists
 ```
 
 
