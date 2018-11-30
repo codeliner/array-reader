@@ -36,30 +36,30 @@ class ArrayReader
     {
         $value = $this->getValueFromPath($aPath);
 
-        if (is_null($value)) {
-            return \intval($default);
+        if ($value === null) {
+            return $default;
         }
 
-        return \intval($value);
+        return (int)$value;
     }
 
     public function floatValue(string $aPath, float $default = 0.0): float
     {
         $value = $this->getValueFromPath($aPath);
 
-        if (is_null($value)) {
-            return \floatval($default);
+        if ($value === null) {
+            return $default;
         }
 
-        return \floatval($value);
+        return (float)$value;
     }
 
     public function booleanValue(string $aPath, bool $default = false): bool
     {
         $value = $this->getValueFromPath($aPath);
 
-        if (is_null($value)) {
-            return (bool)$default;
+        if ($value === null) {
+            return $default;
         }
 
         return (bool)$value;
@@ -69,23 +69,23 @@ class ArrayReader
     {
         $value = $this->getValueFromPath($aPath);
 
-        if (is_null($value)) {
-            return \strval($default);
+        if ($value === null) {
+            return $default;
         }
 
-        return \strval($value);
+        return (string)$value;
     }
 
     public function arrayValue(string $aPath, array $default = []): array
     {
         $value = $this->getValueFromPath($aPath);
 
-        if (is_null($value)) {
+        if ($value === null) {
             return $default;
         }
 
         if (is_scalar($value)) {
-            return array($value);
+            return [$value];
         }
 
         if (is_object($value)) {
@@ -104,7 +104,7 @@ class ArrayReader
     {
         $value = $this->getValueFromPath($aPath);
 
-        if (is_null($value)) {
+        if ($value === null) {
             return $default;
         }
 
@@ -117,7 +117,7 @@ class ArrayReader
 
         $arrayCopyOrValue = $this->originalArray;
 
-        foreach($pathKeys as $pathKey) {
+        foreach ($pathKeys as $pathKey) {
 
             if (!array_key_exists($pathKey, $arrayCopyOrValue)) {
                 return false;
@@ -139,7 +139,9 @@ class ArrayReader
         $aPath = str_replace('\.', '___IamADot___', $aPath);
         $parts = explode('.', $aPath);
 
-        return array_map(function ($part) { return str_replace('___IamADot___', '.', $part); }, $parts);
+        return array_map(function ($part) {
+            return str_replace('___IamADot___', '.', $part);
+        }, $parts);
     }
 
     /**
@@ -152,7 +154,7 @@ class ArrayReader
 
         $arrayCopyOrValue = $this->originalArray;
 
-        foreach($pathKeys as $pathKey) {
+        foreach ($pathKeys as $pathKey) {
 
             if (!isset($arrayCopyOrValue[$pathKey])) {
                 return null;
