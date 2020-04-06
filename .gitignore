@@ -10,3 +10,4 @@ composer.lock
 .idea
 .project
 .settings
+.phpunit.result.cache
